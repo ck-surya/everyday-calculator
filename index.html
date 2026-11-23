@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discount Calculator · Everyday</title>
+    <meta
+      name="description"
+      content="Calculate a sale price and see exactly how much you save. A simple discount calculator with clear formulas and examples."
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/app.js" type="module"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to calculator</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Everyday home"
+        ><span class="brand-icon" aria-hidden="true">e<span>·</span></span
+        >everyday<span class="brand-dot">.</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="#calculator">Calculator</a
+        ><a href="#how-it-works"
+          >How it works <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+      <span class="header-note"><span></span> A little less mental math</span>
+    </header>
+    <main id="main">
+      <div class="page-heading">
+        <div class="eyebrow"><span></span> SMALL TOOLS. EVERYDAY CLARITY.</div>
+        <h1>Good deals.<br />Clear <em>numbers.</em></h1>
+        <p>
+          Know what you’ll pay before you check out.<br />A simpler way to work
+          out your discount.
+        </p>
+        <div class="heading-stamp" aria-hidden="true">
+          <span>LESS GUESSING</span><b>＋ −<br />× ÷</b
+          ><span>MORE KNOWING</span>
+        </div>
+      </div>
+      <section
+        id="calculator"
+        class="calculator"
+        aria-labelledby="calculator-title"
+      >
+        <div class="input-panel">
+          <div class="panel-heading">
+            <span class="section-number">01 /</span>
+            <h2 id="calculator-title">Discount calculator</h2>
+            <span class="small-label">THE SHOPPING ONE</span>
+          </div>
+          <form id="discount-form" novalidate>
+            <label for="price"
+              >Original price <span>Before the discount</span></label
+            >
+            <div class="input-wrap">
+              <span aria-hidden="true">₹</span
+              ><input
+                id="price"
+                name="price"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                max="1000000000"
+                step="any"
+                placeholder="e.g. 2500"
+                aria-describedby="price-error"
+              /><span class="input-suffix">INR</span>
+            </div>
+            <p class="error" id="price-error"></p>
+            <label for="discount">Discount <span>How much is off?</span></label>
+            <div class="input-wrap">
+              <input
+                id="discount"
+                name="discount"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                max="100"
+                step="any"
+                placeholder="e.g. 20"
+                aria-describedby="discount-error"
+              /><span class="input-suffix">%</span>
+            </div>
+            <p class="error" id="discount-error"></p>
+            <div class="quick-discounts" aria-label="Choose a discount">
+              <span>Quick pick</span
+              ><button type="button" data-discount="10">10%</button
+              ><button type="button" data-discount="20">20%</button
+              ><button type="button" data-discount="25">25%</button
+              ><button type="button" data-discount="50">50%</button>
+            </div>
+            <div class="form-actions">
+              <button class="calculate" type="submit">
+                Calculate savings <span aria-hidden="true">↗</span></button
+              ><button class="reset" type="reset">Reset</button>
+            </div>
+            <p class="local-note">
+              <span aria-hidden="true">◇</span> Your numbers stay in your
+              browser.
+            </p>
+          </form>
+        </div>
+        <div class="result-panel">
+          <div class="result-top">
+            <span>YOUR LITTLE RECEIPT</span><span aria-hidden="true">✳</span>
+          </div>
+          <div id="result" aria-live="polite" aria-atomic="true">
+            <p class="result-caption">Your final price</p>
+            <div class="final-price" id="final-price">₹<span>—</span></div>
+            <p class="result-help" id="result-help">
+              A good deal starts with the numbers.
+            </p>
+            <div class="receipt-lines">
+              <div>
+                <span>Original price</span><b id="original-result">—</b>
+              </div>
+              <div>
+                <span>Discount <small id="discount-label"></small></span
+                ><b id="savings-result">—</b>
+              </div>
+            </div>
+            <div class="savings-banner">
+              <span id="savings-message">Your savings will appear here</span
+              ><span aria-hidden="true">↗</span>
+            </div>
+          </div>
+          <div class="receipt-bottom">
+            <div class="barcode" aria-hidden="true"></div>
+            <span>LESS MATH. MORE EVERYDAY.</span
+            ><span class="rounding-note"
+              >Amounts rounded to 2 decimal places.</span
+            >
+          </div>
+        </div>
+      </section>
+      <div class="example-strip">
+        <span
+          ><span aria-hidden="true">↳</span> Just exploring? Try a real-life
+          example.</span
+        ><button id="example" type="button">
+          ₹2,500 with 20% off <span aria-hidden="true">→</span>
+        </button>
+      </div>
+      <section id="how-it-works" class="explanation">
+        <div>
+          <div class="eyebrow">THE MATH, MADE SIMPLE</div>
+          <h2>A little clarity<br />goes a long way.</h2>
+          <p>
+            No hidden steps. Here’s what happens<br />between the price tag and
+            your total.
+          </p>
+        </div>
+        <div class="steps">
+          <article>
+            <span>01</span>
+            <div>
+              <h3>Find your savings</h3>
+              <p>Multiply the original price by the discount percentage.</p>
+              <code>₹2,500 × 20 ÷ 100 = ₹500 saved</code>
+            </div>
+          </article>
+          <article>
+            <span>02</span>
+            <div>
+              <h3>Meet your final price</h3>
+              <p>Subtract the savings from the original price.</p>
+              <code>₹2,500 − ₹500 = ₹2,000 to pay</code>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">A couple of good questions.</h2>
+        <details>
+          <summary>Can I use this for any currency?</summary>
+          <p>
+            The percentage calculation works for any currency. This version
+            displays Indian rupees and rounds amounts to two decimal places.
+          </p>
+        </details>
+        <details>
+          <summary>Does this include taxes or delivery fees?</summary>
+          <p>
+            No. The result applies one discount to the price you enter. Add any
+            applicable taxes or delivery charges separately.
+          </p>
+        </details>
+        <details>
+          <summary>What about two discounts in a row?</summary>
+          <p>
+            Calculate the first discount, then enter that final price as the
+            original price for the second. Two discounts of 20% and 10% give a
+            combined discount of 28%, rather than 30%.
+          </p>
+        </details>
+      </section>
+    </main>
+    <footer>
+      <a class="brand" href="./">everyday<span class="brand-dot">.</span></a
+      ><span><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></span
+      ><span
+        >Made for a little more clarity. <span aria-hidden="true">↗</span></span
+      >
+    </footer>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use the calculator. The formula and examples above
+        are still available.
+      </p></noscript
+    >
+  </body>
+</html>
