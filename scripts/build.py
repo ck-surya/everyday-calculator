@@ -1,5 +1,6 @@
 """Stage only public files and generate domain-specific search metadata."""
 import os
+import re
 from pathlib import Path
 import shutil
 from urllib.parse import urlparse
@@ -18,6 +19,9 @@ shutil.copytree(root / 'assets', output / 'assets')
 pages = ['index.html', 'about.html', 'privacy.html', '404.html']
 for filename in pages:
     text = (root / filename).read_text()
+    text = re.sub(r'<link rel="canonical"[^>]*>', '', text)
+    text = re.sub(r'<base [^>]*>', '', text)
+    text = re.sub(r'<meta name="robots" content="noindex">', '', text)
     canonical = url + '/' + ('' if filename == 'index.html' else filename)
     if filename == '404.html':
         # Relative assets and home links must also work for nested missing URLs.

@@ -60,3 +60,7 @@ To undo a release, revert the relevant commit and push the revert; confirm the r
 ## Next learning exercise
 
 Change one preset discount, explain the formula in your own words, run the tests, and verify the result in the browser. Then publish the first version before adding more calculators.
+
+## Current publishing configuration
+
+The live repository now uses **Deploy from a branch → main → /(root)**. GitHub's built-in Pages job publishes the source files. The custom workflow only validates the calculator and search metadata; it does not deploy a second artifact. This prevents two publishing jobs overwriting each other. Keep the root sitemap.xml, canonical links and verification meta tag committed. The earlier GitHub Actions publishing instructions above describe the former configuration.

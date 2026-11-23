@@ -1,43 +1,22 @@
-name: Test and publish calculator
+name: Validate calculator
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
-concurrency:
-  group: pages
-  cancel-in-progress: false
 jobs:
-  build:
-    permissions:
-      contents: read
-      pages: read
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - name: Test calculator
         run: node --test tests/calculations.test.mjs
-      - name: Configure Pages
-        id: pages
-        uses: actions/configure-pages@v5
-      - name: Stage public files
+      - name: Validate release metadata
         env:
-          SITE_URL: ${{ steps.pages.outputs.base_url }}
-        run: python3 scripts/build.py
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: _site
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+          SITE_URL: https://ck-surya.github.io/everyday-calculator
+        run: |
+          python3 scripts/build.py
+          diff sitemap.xml _site/sitemap.xml
+          diff robots.txt _site/robots.txt
